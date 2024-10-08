@@ -9,8 +9,8 @@
  - git
 
 ### Instalation process:
- - clone the repository with `git clone https://github.com/nonelone/go-bork`
- - cd to it using `cd go-bork`
+ - clone the repository with `git clone https://github.com/nonelone/go-borg`
+ - cd to it using `cd go-borg`
  - run `run.sh` or `run.bat`
 
 
