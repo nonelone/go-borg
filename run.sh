@@ -33,16 +33,22 @@ container_found="false"
 # Look for existing container
 if [[ $( $COMMAND) =~ "go-borg" ]]; then
     echo "Container found"
+    # Ask the user if they want to re-build it
+    read -p "Do you want to re-build it? [y/n]? " ANSWER
+    if [[ $ANSWER = "y" ]] || [[ $ANSWER = "Y" ]]; then
+        COMMAND="$ENGINE build -t go-borg ."
+        $COMMAND
+    fi
     container_found="true"
 else
     echo -e "No container found."
 fi
 
-# Ask user if they want to build it
+# Ask the user if they want to build it
 if [[ $container_found = "false" ]]; then
     read -p "Do you want to build it? [y/n]? " ANSWER
     if [[ $ANSWER = "y" ]] || [[ $ANSWER = "Y" ]]; then
-        # tag the container as go-borg
+        # Tag the container as go-borg
         COMMAND="$ENGINE build -t go-borg ."
         $COMMAND
     else
@@ -51,7 +57,7 @@ if [[ $container_found = "false" ]]; then
     fi
 fi
 
-# Ask user if they want to run the app
+# Ask the user if they want to run the app
 read -p "Do you want to run the app? [y/n]? " ANSWER
 if [[ $ANSWER = "y" ]] || [[ $ANSWER = "Y" ]]; then
     COMMAND="$ENGINE run -p 5000:5000 go-borg"
