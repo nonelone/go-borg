@@ -17,7 +17,6 @@ if [[ $ENGINE = "" ]]; then
     else
         ENGINE="docker"
     fi
-
 fi
 
 # Quit if neither PODMAN nor DOCKER was found
@@ -42,7 +41,6 @@ fi
 # Ask user if they want to build it
 if [[ $container_found = "false" ]]; then
     read -p "Do you want to build it? [y/n]? " ANSWER
-
     if [[ $ANSWER = "y" ]] || [[ $ANSWER = "Y" ]]; then
         # tag the container as go-borg
         COMMAND="$ENGINE build -t go-borg ."
