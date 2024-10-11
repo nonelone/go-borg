@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -48,9 +49,11 @@ func player_handler(w http.ResponseWriter, r *http.Request) {
 
 func npc_handler(w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Path[len("/npc/"):]
-	fmt.Println(name)
+	//fmt.Println(name)
 	npc := loadNPC(name)
-	fmt.Fprint(w, "<title>%s</title><body>%s</body>", npc.Name)
+	//fmt.Fprint(w, "<title>%s</title><body>%s</body>", npc.Name)
+	t, _ := template.ParseFiles("templates/npc.html")
+	t.Execute(w, npc)
 }
 
 func main() {
